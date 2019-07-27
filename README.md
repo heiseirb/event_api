@@ -1,1 +1,4 @@
-# event_api
+# README
+
+## 使い方
+## API仕様
