@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
+#                  password_client_user PUT    /client/users/:id/password(.:format)                                                     client/users#password {:format=>:json}
 #                          client_users GET    /client/users(.:format)                                                                  client/users#index {:format=>:json}
 #                                       POST   /client/users(.:format)                                                                  client/users#create {:format=>:json}
 #                           client_user GET    /client/users/:id(.:format)                                                              client/users#show {:format=>:json}
@@ -13,10 +14,10 @@
 #                                       PATCH  /client/events/:id(.:format)                                                             client/events#update {:format=>:json}
 #                                       PUT    /client/events/:id(.:format)                                                             client/events#update {:format=>:json}
 #                                       DELETE /client/events/:id(.:format)                                                             client/events#destroy {:format=>:json}
-#                client_event_schedules GET    /client/event_schedules(.:format)                                                        client/event_schedules#index {:format=>:json}
-#                                       POST   /client/event_schedules(.:format)                                                        client/event_schedules#create {:format=>:json}
-#                 client_event_schedule GET    /client/event_schedules/:id(.:format)                                                    client/event_schedules#show {:format=>:json}
-#                                       PATCH  /client/event_schedules/:id(.:format)                                                    client/event_schedules#update {:format=>:json}
+#         client_event_schedule_lottery POST   /client/event_schedules/:event_schedule_id/lottery(.:format)                             client/event_schedules#lottery {:format=>:json}
+#           client_event_schedule_apply POST   /client/event_schedules/:event_schedule_id/apply(.:format)                               client/event_schedules#apply {:format=>:json}
+#                client_event_schedules POST   /client/event_schedules(.:format)                                                        client/event_schedules#create {:format=>:json}
+#                 client_event_schedule PATCH  /client/event_schedules/:id(.:format)                                                    client/event_schedules#update {:format=>:json}
 #                                       PUT    /client/event_schedules/:id(.:format)                                                    client/event_schedules#update {:format=>:json}
 #                                       DELETE /client/event_schedules/:id(.:format)                                                    client/event_schedules#destroy {:format=>:json}
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
