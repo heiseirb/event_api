@@ -39,8 +39,12 @@
 
 Rails.application.routes.draw do
   namespace :client, defaults: { format: :json } do
-    resources :users
+    resources :users do
+      member do
+        put :password
+      end
+    end
     resources :events
-    resources :event_schedules
+    resources :event_schedules, only: %i(create update destroy)
   end
 end
