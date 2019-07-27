@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_07_27_025401) do
   create_table "client_tokens", force: :cascade do |t|
     t.string "token", null: false
     t.string "secret_token_hash", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["token"], name: "index_client_tokens_on_token", unique: true
   end
 
@@ -41,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_07_27_025401) do
     t.bigint "event_schedule_id", null: false
     t.bigint "user_id", null: false
     t.string "status", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["event_schedule_id"], name: "index_user_to_event_schedules_on_event_schedule_id"
     t.index ["user_id"], name: "index_user_to_event_schedules_on_user_id"
   end

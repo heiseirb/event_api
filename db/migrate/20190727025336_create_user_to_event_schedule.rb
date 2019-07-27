@@ -4,7 +4,8 @@ class CreateUserToEventSchedule < ActiveRecord::Migration[6.0]
       t.references :event_schedule, null: false
       t.references :user, null: false
       t.string :status, null: false
-      
+ 
+      t.timestamps
     end
   end
 end

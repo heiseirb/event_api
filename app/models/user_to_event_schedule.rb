@@ -6,10 +6,12 @@
 #  event_schedule_id :bigint           not null
 #  user_id           :bigint           not null
 #  status            :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 class UserToEventSchedule < ApplicationRecord
   belongs_to :event_schedule
   belongs_to :user
-  enumerize :status, in: %w(accepted), default: :accepted, scope: true, predicates: true
+  enumerize :status, in: %w(reserved confirmed canceled), default: :reserved, scope: true, predicates: true
 end
