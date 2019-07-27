@@ -13,5 +13,13 @@
 class UserToEventSchedule < ApplicationRecord
   belongs_to :event_schedule
   belongs_to :user
-  enumerize :status, in: %w(reserved confirmed canceled), default: :reserved, scope: true, predicates: true
+  enumerize :status, in: %w(reserved confirmed), default: :reserved, scope: true, predicates: true
+
+  before_create :can_aplay?
+
+  private
+  
+  def can_aplay?
+    throw(:abort) if event_schedule.event.owner_id == user_id
+  end
 end

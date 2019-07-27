@@ -23,4 +23,11 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: true
   validates :password, length: { minimum: 8 }
   enumerize :role, in: %w(owner normal), default: :normal, scope: true, predicates: true
+
+  scope :with_relation, -> do
+    includes(
+      { owner_events: :event_schedules },
+      { join_events: :event_schedules }
+    )
+  end
 end

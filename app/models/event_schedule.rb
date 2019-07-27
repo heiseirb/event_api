@@ -16,4 +16,21 @@ class EventSchedule < ApplicationRecord
 
   validates :date, presence: true
   validates :capacity, presence: true, numericality: true, greater_than_or_equal_to: 0
+
+  scope :with_relation, -> do
+    includes(
+      :event,
+      :users
+    )
+  end
+
+  def lottery
+    user_to_event_schedules.update_all(status: :confirmed) if capacity < users.count
+    loop do
+      break if capacity == users.count
+
+      user_to_event_schedules.where(status: :reserved).sample.update!(status: :confirmed)
+    end
+    self
+  end
 end

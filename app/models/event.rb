@@ -12,9 +12,15 @@
 
 class Event < ApplicationRecord
   belongs_to :owner, class_name: 'User'
-  has_many :user_to_event_schedules, dependent: :destroy
-  has_many :schedules, through: :user_to_event_schedules
+  has_many :event_schedules, dependent: :destroy
 
   validates :place, presence: true
   validates :description, presence: true
+
+  scope :with_relation, -> do
+    includes(
+      :owner,
+      :event_schedules
+    )
+  end
 end
