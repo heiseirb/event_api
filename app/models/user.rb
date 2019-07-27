@@ -15,9 +15,9 @@ class User < ApplicationRecord
   extend Enumerize
   has_secure_password
 
-  has_many :owner_events, class_name: 'Event'
+  has_many :owner_events, class_name: 'Event', dependent: :destroy
   has_many :user_to_event_schedules, dependent: :destroy
-  has_many :events, through: :user_to_event_schedules
+  has_many :join_events, through: :user_to_event_schedules, class_name: 'Event'
 
   validates :name, :email, presence: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: true

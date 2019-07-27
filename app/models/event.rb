@@ -12,6 +12,8 @@
 
 class Event < ApplicationRecord
   belongs_to :owner, class_name: 'User'
+  has_many :user_to_event_schedules, dependent: :destroy
+  has_many :schedules, through: :user_to_event_schedules
 
   validates :place, presence: true
   validates :description, presence: true
