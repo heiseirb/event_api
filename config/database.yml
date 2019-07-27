@@ -32,6 +32,7 @@ development:
 production:
   <<: *default
   host: <%= ENV["DB_HOST"] %>
-  database: event_api_production
+  database: <%= ENV["DB_NAME"] %>
   username: <%= ENV["DB_USER"] %>
   password: <%= ENV["DB_PASSWORD"] %>
+  port: 5432
