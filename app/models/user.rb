@@ -12,4 +12,15 @@
 #
 
 class User < ApplicationRecord
+  extend Enumerize
+  has_secure_password
+
+  has_many :owner_events, class_name: 'Event'
+  has_many :user_to_event_schedules, dependent: :destroy
+  has_many :events, through: :user_to_event_schedules
+
+  validates :name, :email, presence: true
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: true
+  validates :password, length: { minimum: 8 }
+  enumerize :role, in: %w(owner normal), default: :normal, scope: true, predicates: true
 end

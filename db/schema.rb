@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2019_07_27_025401) do
 
   create_table "event_schedules", force: :cascade do |t|
     t.date "date", null: false
-    t.string "status", null: false
     t.integer "capacity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -38,11 +37,12 @@ ActiveRecord::Schema.define(version: 2019_07_27_025401) do
     t.index ["owner_id"], name: "index_events_on_owner_id", unique: true
   end
 
-  create_table "user_to_schedules", force: :cascade do |t|
-    t.bigint "event_id", null: false
+  create_table "user_to_event_schedules", force: :cascade do |t|
+    t.bigint "event_schedule_id", null: false
     t.bigint "user_id", null: false
-    t.index ["event_id"], name: "index_user_to_schedules_on_event_id"
-    t.index ["user_id"], name: "index_user_to_schedules_on_user_id"
+    t.string "status", null: false
+    t.index ["event_schedule_id"], name: "index_user_to_event_schedules_on_event_schedule_id"
+    t.index ["user_id"], name: "index_user_to_event_schedules_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
