@@ -14,7 +14,7 @@ class ClientToken < ApplicationRecord
   validates :secret_token_hash, length: { minimum: 8 }, uniqueness: true
 
   def self.authenticate?(token, secret_token)
-    return false unless client = where(token)
+    return false unless client = find_by(token: token)
 
     client.secret_token_hash == Digest::SHA256.hexdigest(secret_token)
   end
