@@ -2,7 +2,7 @@ class Client::EventsController < Client::ApplicationController
   before_action :set_event, only: %i(show update destroy lottery)
 
   def index
-    render json: params[:page] ? Event.with_relation.page(page) : Event.with_relation.all
+    render json: params[:page] ? Event.with_relation.page(params[:page]) : Event.with_relation.all
   end
 
   def show

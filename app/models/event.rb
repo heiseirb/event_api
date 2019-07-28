@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   scope :with_relation, -> do
     includes(
       :owner,
-      :event_schedules
+      :schedules
     )
   end
 end
