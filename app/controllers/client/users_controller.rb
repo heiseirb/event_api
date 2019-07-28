@@ -2,7 +2,7 @@ class Client::UsersController < Client::ApplicationController
   before_action :set_user, only: %i(show update destroy)
 
   def index
-    render json: User.with_relation.all
+    render json: params[:page] ? User.with_relation.page(page) : User.with_relation.all
   end
 
   def show

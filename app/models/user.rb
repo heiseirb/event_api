@@ -15,7 +15,7 @@ class User < ApplicationRecord
   extend Enumerize
   has_secure_password
 
-  has_many :owner_events, class_name: 'Event', dependent: :destroy
+  has_many :owner_events, class_name: 'Event', dependent: :destroy, foreign_key: 'owner_id'
   has_many :user_to_event_schedules, dependent: :destroy
   has_many :join_events, through: :user_to_event_schedules, class_name: 'Event'
 

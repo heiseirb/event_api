@@ -11,8 +11,8 @@
 #
 
 class Event < ApplicationRecord
-  belongs_to :owner, class_name: 'User'
-  has_many :event_schedules, dependent: :destroy
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
+  has_many :schedules, class_name: 'EventSchedule', dependent: :destroy
 
   validates :place, presence: true
   validates :description, presence: true
