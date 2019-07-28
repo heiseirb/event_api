@@ -11,5 +11,12 @@
 #
 
 class EventScheduleSerializer < ActiveModel::Serializer
-  attributes :id, :event_id, :date, :capacity
+  attributes :id, :event_id, :date, :capacity, :users
+
+  def users
+    {
+      confirmed_user_ids: object.user_to_event_schedules.where(status: :confirmed).map(&:user_id),
+      reserved_user_ids: object.user_to_event_schedules.where(status: :reserved).map(&:user_id)
+    }
+  end
 end

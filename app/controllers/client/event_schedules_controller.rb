@@ -1,5 +1,9 @@
 class Client::EventSchedulesController < Client::ApplicationController
-  before_action :set_event_schedule, only: :update
+  before_action :set_event_schedule, only: [:show, :update]
+
+  def show
+    render json: @event_schedule
+  end
 
   def create
     render json: EventSchedule.create!(schedule_params), include: '**'
@@ -16,13 +20,13 @@ class Client::EventSchedulesController < Client::ApplicationController
 
   # 申し込み
   def apply
-    render json: event_schedule.users.create!(user_params), include: '**'
+    render json:  @event_schedule.users.create!(user_params), include: '**'
   end
 
   private
 
   def set_event_schedule
-    @event_schedule = EventSchedule.find(params[:id])
+    @event_schedule = EventSchedule.with_relation.find(params[:id])
   end
 
   def schedule_params

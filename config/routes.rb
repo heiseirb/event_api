@@ -46,7 +46,7 @@ Rails.application.routes.draw do
       end
     end
     resources :events
-    resources :event_schedules, only: %i(create update destroy) do
+    resources :event_schedules, only: %i(show create update destroy) do
       post :lottery
       post :apply
     end
