@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   has_many :owner_events, class_name: 'Event', dependent: :destroy, foreign_key: 'owner_id'
   has_many :user_to_event_schedules, dependent: :destroy
-  has_many :join_events, through: :user_to_event_schedules, class_name: 'Event'
+  has_many :join_schedules, through: :user_to_event_schedules, class_name: 'EventSchedule', source: 'event_schedule'
 
   validates :name, :email, presence: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, uniqueness: true
@@ -26,8 +26,8 @@ class User < ApplicationRecord
 
   scope :with_relation, -> do
     includes(
-      { owner_events: :event_schedules },
-      { join_events: :event_schedules }
+      { owner_events: :schedules },
+      { join_schedules: :event }
     )
   end
 end

@@ -1,5 +1,5 @@
 class Client::ApplicationController < ApplicationController
-  before_action :verify!
+  before_action :verify! unless Rails.env.development?
 
   private
 

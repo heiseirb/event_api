@@ -6,7 +6,7 @@ class Client::EventsController < Client::ApplicationController
   end
 
   def show
-    render json: @event
+    render json: @event, include: '**'
   end
 
   def create

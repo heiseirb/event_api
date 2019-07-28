@@ -2,7 +2,7 @@ class Client::EventSchedulesController < Client::ApplicationController
   before_action :set_event_schedule, only: :update
 
   def create
-    render json: EventSchedule.create!(schedule_params)
+    render json: EventSchedule.create!(schedule_params), include: '**'
   end
 
   def destroy
@@ -11,12 +11,12 @@ class Client::EventSchedulesController < Client::ApplicationController
 
   # 抽選
   def lottery
-    render json: @event_schedule.lottery
+    render json: @event_schedule.lottery, include: '**'
   end
 
   # 申し込み
   def apply
-    render json: event_schedule.users.create!(user_params)
+    render json: event_schedule.users.create!(user_params), include: '**'
   end
 
   private

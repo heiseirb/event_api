@@ -11,5 +11,5 @@
 #
 
 class EventScheduleSerializer < ActiveModel::Serializer
-  attributes :id, :status, :event_id, :user_id
+  attributes :id, :event_id, :date, :capacity
 end

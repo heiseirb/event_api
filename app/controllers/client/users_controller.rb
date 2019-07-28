@@ -6,15 +6,15 @@ class Client::UsersController < Client::ApplicationController
   end
 
   def show
-    render json: @user, include: ['owner_events', 'join_events']
+    render json: @user, include: '**'
   end
 
   def create
-    render json: User.create!(create_user_params)
+    render json: User.create!(create_user_params), include: '**'
   end
 
   def update
-    render json: @user.update!(update_user_params)
+    render json: @user.update!(update_user_params), include: '**'
   end
 
   def destroy
@@ -28,7 +28,7 @@ class Client::UsersController < Client::ApplicationController
   end
 
   def create_user_params
-    params.fetch(:user, {}).permit(:name, :email, :role, :password, :password_confirmatio)
+    params.fetch(:user, {}).permit(:name, :email, :role, :password, :password_confirmation)
   end
 
   def update_user_params
