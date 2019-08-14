@@ -1,5 +1,5 @@
 class Client::EventSchedulesController < Client::ApplicationController
-  before_action :set_event_schedule, only: [:show, :update, :lottery, :applay]
+  before_action :set_event_schedule, only: [:show, :update, :lottery, :apply]
 
   def show
     render json: @event_schedule
