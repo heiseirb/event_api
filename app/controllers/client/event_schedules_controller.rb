@@ -20,7 +20,7 @@ class Client::EventSchedulesController < Client::ApplicationController
 
   # 申し込み
   def apply
-    render json:  @event_schedule.user_to_event_schedules.create!(schedule_params), include: '**'
+    render json:  @event_schedule.user_to_event_schedules.create!(user_to_event_schedules_params), include: '**'
   end
 
   private
@@ -33,7 +33,7 @@ class Client::EventSchedulesController < Client::ApplicationController
     params.fetch(:event_schedule, {}).permit(:event_id, :date, :capacity)
   end
 
-  def schedule_params
-    params.fetch(:schedule, {}).permit(:user_id)
+  def user_to_event_schedules_params
+    params.fetch(:event_schedule, {}).permit(:user_id)
   end
 end
