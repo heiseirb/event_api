@@ -20,6 +20,10 @@ class Client::EventSchedulesController < Client::ApplicationController
 
   # 申し込み
   def apply
+    pp @event_schedule
+    pp @event_schedule.users
+    pp @event_schedule.users.create!(user_params)
+    pp user_params
     render json:  @event_schedule.users.create!(user_params), include: '**'
   end
 
