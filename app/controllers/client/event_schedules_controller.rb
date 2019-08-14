@@ -20,7 +20,7 @@ class Client::EventSchedulesController < Client::ApplicationController
 
   # 申し込み
   def apply
-    render json:  @event_schedule.user_to_event_schedules.create!(user_id: params[user_id]), include: '**'
+    render json:  @event_schedule.user_to_event_schedules.create!(user_id: params[:user_id]), include: '**'
   end
 
   private
