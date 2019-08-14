@@ -24,7 +24,7 @@ class Client::EventSchedulesController < Client::ApplicationController
     pp @event_schedule.users
     pp @event_schedule.users.create!(user_params)
     pp user_params
-    render json:  @event_schedule.users.create!(user_params), include: '**'
+    render json:  @event_schedule.user_to_event_schedules.create!(user_params), include: '**'
   end
 
   private
