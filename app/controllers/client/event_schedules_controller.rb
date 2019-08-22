@@ -1,5 +1,5 @@
 class Client::EventSchedulesController < Client::ApplicationController
-  before_action :set_event_schedule, only: [:show, :update]
+  before_action :set_event_schedule, only: [:show, :update, :lottery, :apply]
 
   def show
     render json: @event_schedule
@@ -20,20 +20,17 @@ class Client::EventSchedulesController < Client::ApplicationController
 
   # 申し込み
   def apply
-    render json:  @event_schedule.users.create!(user_params), include: '**'
+    @event_schedule.user_to_event_schedules.create!(user_id: params[:user_id])
+    render json:  @event_schedule, include: '**'
   end
 
   private
 
   def set_event_schedule
-    @event_schedule = EventSchedule.with_relation.find(params[:id])
+    @event_schedule = EventSchedule.with_relation.find(params[:event_schedule_id])
   end
 
   def schedule_params
     params.fetch(:event_schedule, {}).permit(:event_id, :date, :capacity)
-  end
-
-  def user_params
-    params.fetch(:user, {}).permit(:user_id)
   end
 end
