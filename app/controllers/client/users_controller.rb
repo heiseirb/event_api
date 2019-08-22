@@ -32,6 +32,6 @@ class Client::UsersController < Client::ApplicationController
   end
 
   def update_user_params
-    params.fetch(:user, {}).permit(:name, :email, :role)
+    params.fetch(:user, {}).permit(:name, :email, :role, :password, :password_confirmation)
   end
 end
