@@ -22,7 +22,7 @@ class EventSchedule < ApplicationRecord
     includes(
       :event,
       :users
-    )
+    ).order(id: :asc)
   end
 
   def lottery

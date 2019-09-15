@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-100.times do |i|
+50.times do |i|
   password = Digest::SHA1.hexdigest(i.to_s)
   User.create!(
     name: Faker::Games::Pokemon.name,
@@ -28,7 +28,7 @@ eventers.each do |eventer|
     Random.rand(1..10).times do
       event.schedules.create!(
         date: Faker::Date.between(2.days.ago, Time.zone.today),
-        capacity: Random.rand(1..1000)
+        capacity: Random.rand(1..300)
       )
     end
   end

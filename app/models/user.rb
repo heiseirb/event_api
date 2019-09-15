@@ -28,6 +28,6 @@ class User < ApplicationRecord
     includes(
       { owner_events: :schedules },
       { join_schedules: :event }
-    )
+    ).order(id: :asc)
   end
 end

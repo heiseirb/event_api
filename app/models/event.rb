@@ -21,6 +21,6 @@ class Event < ApplicationRecord
     includes(
       :owner,
       :schedules
-    )
+    ).order(id: :asc)
   end
 end
