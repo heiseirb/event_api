@@ -27,7 +27,7 @@ class Client::EventSchedulesController < Client::ApplicationController
   private
 
   def set_event_schedule
-    @event_schedule = EventSchedule.with_relation.find(params[:event_schedule_id])
+    @event_schedule = EventSchedule.with_relation.find(params[:id])
   end
 
   def schedule_params
