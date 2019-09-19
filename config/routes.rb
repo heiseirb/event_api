@@ -41,6 +41,7 @@
 Rails.application.routes.draw do
   namespace :client, defaults: { format: :json } do
     resources :users do
+      resources :join_schedules, only: %i(index show destroy)
       member do
         put :password
       end
