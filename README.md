@@ -12,6 +12,15 @@ client_user           GET    /client/users/:id(.:format)                        
                       PUT    /client/users/:id(.:format)                                  client/users#update 
                       DELETE /client/users/:id(.:format)                                  client/users#destroy 
 ```
+### ユーザーの参加イベント管理
+※Client::JoinSchedules#index ユーザーの参加イベント一覧  
+※Client::JoinSchedules#show ユーザーの参加イベント詳細  
+※Client::JoinSchedules#destroy イベントの参加キャンセル  
+```
+client_user_join_schedules GET    /client/users/:user_id/join_schedules(.:format)                                          client/join_schedules#index {:format=>:json}
+client_user_join_schedule GET    /client/users/:user_id/join_schedules/:id(.:format)                                      client/join_schedules#show {:format=>:json}
+                          DELETE /client/users/:user_id/join_schedules/:id(.:format)                                      client/join_schedules#destroy {:format=>:json}
+```
 ### イベント
 ※パラメータはコードを読んでね
 ```
